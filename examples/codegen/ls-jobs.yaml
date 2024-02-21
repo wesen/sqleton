@@ -1,0 +1,50 @@
+name: ls-jobs
+short: List jobs
+flags:
+  - name: from
+    type: date
+    help: Start date
+  - name: to
+    type: date
+    help: End date
+  - name: status
+    type: stringList
+    help: Status
+  - name: order_by
+    type: string
+    help: Order by clause
+    default: last_updated_at DESC
+  - name: limit
+    type: int
+    help: Limit clause (0 for no limit)
+    default: 50
+  - name: offset
+    type: int
+    help: Offset clause
+query: |
+  SELECT
+    job_id,
+    status,
+    job_name,
+    last_updated_at
+  FROM
+    jobs
+  WHERE
+    1 = 1
+  {{ if .from }}
+    AND last_updated_at >= '{{ .from }}'
+  {{ end }}
+  {{ if .to }}
+    AND last_updated_at <= '{{ .to }}'
+  {{ end }}
+  {{ if .status }}
+    AND status IN ({{ .status | sqlStringIn }})
+  {{ end }}
+  ORDER BY
+    {{ .order_by }}
+  {{ if .limit }}
+    LIMIT {{ .limit }}
+  {{ end }}
+  {{ if .offset }}
+    OFFSET {{ .offset }}
+  {{ end }}

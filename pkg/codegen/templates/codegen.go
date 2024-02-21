@@ -227,6 +227,20 @@ func unquoteParameterType(parameterType parameters.ParameterType) string {
 		return "parameters.ParameterTypeObjectListFromFile"
 	case parameters.ParameterTypeKeyValue:
 		return "parameters.ParameterTypeKeyValue"
+	case parameters.ParameterTypeStringFromFile:
+		return "parameters.ParameterTypeStringFromFile"
+	case parameters.ParameterTypeStringFromFiles:
+		return "parameters.ParameterTypeStringFromFiles"
+	case parameters.ParameterTypeObjectListFromFiles:
+		return "parameters.ParameterTypeObjectListFromFiles"
+	case parameters.ParameterTypeStringListFromFile:
+		return "parameters.ParameterTypeStringListFromFile"
+	case parameters.ParameterTypeStringListFromFiles:
+		return "parameters.ParameterTypeStringListFromFiles"
+	case parameters.ParameterTypeChoice:
+		return "parameters.ParameterTypeChoice"
+	case parameters.ParameterTypeChoiceList:
+		return "parameters.ParameterTypeChoiceList"
 	default:
 		return "unknown"
 	}
